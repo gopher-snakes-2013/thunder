@@ -14,8 +14,13 @@
 
 require './thunder_app'
 run Sinatra::Application
-# `run` is a method that tells the rack server
+# `run` is a rackup method that tells the rack server
 # to dispatch HTTP Requests to the rack specified.
+
+# Sinatra::Application is the central class of sinatra.
+# It makes the pieces of your sinatra work together to serve web pages
+# We can require it here because we have required ./thunderapp
+# ./thunderapp requires sinatra which has Sinatra::Application in it
 
 # See http://rack.rubyforge.org/doc/Rack/Builder.html
 # For the documentation
