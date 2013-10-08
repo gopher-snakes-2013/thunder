@@ -52,11 +52,13 @@ group :development, :test do
   # for its documentation
 
 
-  gem 'rerun'
-  # Rerun re-launches applications when the file system changes.
-  # This makes it easy to re launch sinatra or our tests when we
-  # Save a file
+  gem 'shotgun'
+  # shotgun is a rack-compliant server that reloads
+  # the entire application on every page request.
+  # It's very slow, but it ensures the app is always
+  # running the latest code when we're developing it.
 
-  # See https://github.com/alexch/rerun
-  # for its documentation
+  # See https://github.com/rtomayko/shotgun
+  # for documentation
+
 end

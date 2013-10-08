@@ -5,9 +5,9 @@ recommend and volunteer for talks
 
 ## Running the App
 
-We recommend you use `rerun` to relaunch the app everytime the files change.
+We recommend you use `shotgun` to run the app locally
 ```
-  rerun ruby thunder_app.rb
+  shotgun
 ```
 
-This makes the application available
+This makes the application available at http://localhost:9393/
