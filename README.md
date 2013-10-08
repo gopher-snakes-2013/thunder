@@ -10,7 +10,11 @@ We recommend you use `shotgun` to run the app locally
   shotgun
 ```
 
-This makes the application available at http://localhost:9393/
+This serves the application on localhost at port 9393. You can visit it at
+http://localhost:9393/
+
+Shotgun also re-loads the application every time we change a file, so it is
+always up to date.
 
 ## Contributing
 
