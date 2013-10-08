@@ -29,6 +29,8 @@ gem 'sinatra'
 # For their README
 
 
+gem 'rack-flash3'
+
 
 group :development, :test do
 # Groups allow us to keep gems that we only use for test

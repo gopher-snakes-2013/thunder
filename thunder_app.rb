@@ -1,6 +1,22 @@
 require 'sinatra'
 
+require 'rack-flash'
+enable :sessions
+use Rack::Flash
 
+
+
+
+$LOAD_PATH.unshift(File.expand_path('.'))
+# The $LOAD_PATH array includes all the places ruby will look when
+# you call require.
+
+# We want to add the current working directory
+# to the loadpath so that we can require our files
+# without using require_relative
+
+# See http://selfless-singleton.rickwinfrey.com/2012/12/20/-rubys-load-path/
+# For more details
 
 get '/' do
 # This tells sinatra to define a get route at the '/' path.
@@ -16,5 +32,14 @@ get '/' do
   # See http://www.sinatrarb.com/intro.html#Views%20/%20Templates
   # For how Sinatra works with templates and views
 
+end
 
+
+get '/users/new' do
+  erb "users/new".to_sym
+end
+
+post '/users' do
+  flash[:notice] = "Thanks for registering, #{params[:user][:name]}!"
+  redirect '/'
 end

@@ -1,2 +1,12 @@
 <h1>Thunder!</h1>
 <p>All the Awesome Lightning Talks!</p>
+
+<% if flash[:notice] %>
+  <p class="notice"><%=flash[:notice]%></p>
+<% end %>
+
+<nav>
+  <h3>
+    <a href="/users/new">Register as a Norse Deity</a>
+  </h3>
+</nav>

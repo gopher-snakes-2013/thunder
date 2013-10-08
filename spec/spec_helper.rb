@@ -1,17 +1,9 @@
-$LOAD_PATH.unshift(File.expand_path('.'))
-# The $LOAD_PATH array includes all the places ruby will look when
-# you call require.
+ENV['RACK_ENV'] ||= 'test'
+# If we set the RACK_ENV environment variable to test it sets the sinatra
+# application environment to test as well, so it will raise errors if our code
+# is broken instead of just saying "Internal Server Error"
 
-# We want to add the current working directory
-# to the loadpath so that we can require our files
-# without using require_relative
-
-# See http://selfless-singleton.rickwinfrey.com/2012/12/20/-rubys-load-path/
-# For more details
-
-require 'thunder_app'
-# Because we added the $LOAD_PATH, we can now require 'thunder_app'
-# without doing `require_relative` or `require './thunder_app'
+require './thunder_app'
 
 require 'capybara/rspec'
 # Capybara allows us to test web applications easily. Let's load the library!
