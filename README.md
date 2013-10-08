@@ -11,3 +11,9 @@ We recommend you use `shotgun` to run the app locally
 ```
 
 This makes the application available at http://localhost:9393/
+
+## Contributing
+
+1. Grab a feature or bugfix off [Trello](https://trello.com/b/rlTdOUOo/thunder)
+   and submit a pull request!
+1. Submit an [issue](issues)!
