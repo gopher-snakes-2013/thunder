@@ -6,7 +6,7 @@ module SessionHelper
 
   def logged_in?
     !current_user.nil?
-    # current_user.nil? return false if we have a user
+    # current_user.nil? returns false if we have a user
     # since we want this method to return true if we have a user
     # the bang ! returns true for false and false for true
     # giving our method the expected functionality
