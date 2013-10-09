@@ -10,4 +10,10 @@ class User < ActiveRecord::Base
       errors.add(:email, "must be formatted like email@example.com")
     end
   end
+
+  def self.authenticate(user_hash)
+    user = User.find_by_email(user_hash[:email])
+    return false unless user && user.password == user_hash[:password]
+    user
+  end
 end

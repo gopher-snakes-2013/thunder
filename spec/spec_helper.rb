@@ -6,6 +6,7 @@ ENV['RACK_ENV'] ||= 'test'
 require './thunder_app'
 
 require 'shoulda-matchers'
+require 'faker'
 
 require 'capybara/rspec'
 # Capybara allows us to test web applications easily. Let's load the library!
@@ -35,4 +36,13 @@ RSpec.configure do |config|
   config.before do
     User.destroy_all
   end
+end
+
+def random_user_attributes
+  name = "#{Faker::Name.name} #{SecureRandom.hex(4)}"
+  {
+    name: name,
+    email: "#{name.parameterize}@example.com",
+    password: "password"
+  }
 end

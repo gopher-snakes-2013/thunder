@@ -47,6 +47,7 @@ feature "Guest may register as Norse Deity" do
         password: ""
       }
     end
+
     scenario "Guest is asked to fix their errors" do
       register_as(users_attributes)
 

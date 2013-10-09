@@ -68,5 +68,6 @@ group :development, :test do
 
   gem 'dotenv'
   gem 'shoulda-matchers'
+  gem 'faker'
 
 end

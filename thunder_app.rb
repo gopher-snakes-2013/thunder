@@ -58,3 +58,17 @@ post '/users' do
     erb "users/new".to_sym
   end
 end
+
+get "/sessions/new" do
+  erb "sessions/new".to_sym
+end
+
+post "/sessions" do
+  @user = User.authenticate(params[:user])
+  if @user
+    login(@user)
+    redirect '/'
+  else
+    erb "sessions/new".to_sym
+  end
+end

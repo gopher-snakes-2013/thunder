@@ -16,4 +16,27 @@ describe User do
     it { should_not allow_value("helloexample.com").for(:email) }
     it { should_not allow_value("hello@examplecom").for(:email) }
   end
+
+  describe ".authenticate" do
+    let(:user_attributes) { random_user_attributes }
+    context "when the user exists" do
+      let!(:user) { User.create(user_attributes) }
+      it "returns the user" do
+        expect(User.authenticate(user_attributes)).to eql(user)
+      end
+
+      context "and the password is wrong" do
+        it "returns false" do
+          user_attributes[:password] = "Wrong password"
+          expect(User.authenticate(user_attributes)).to be_false
+        end
+      end
+    end
+
+    context "when the user does not exist" do
+      it "returns false" do
+        expect(User.authenticate(user_attributes)).to be_false
+      end
+    end
+  end
 end
