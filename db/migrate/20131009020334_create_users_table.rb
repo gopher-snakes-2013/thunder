@@ -3,7 +3,10 @@ class CreateUsersTable < ActiveRecord::Migration
     create_table :users do |t|
       t.string :email, :name, :password_hash
       # password_hash is where we are going to store our encrypted
-      # password.  Bcrypt like it to be called password_hash
+      # password.  by not calling this column password we can have
+      # methods called password in our model (ie. user.password)
+
+
       t.timestamps
     end
   end
