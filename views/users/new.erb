@@ -1,3 +1,8 @@
+<% unless @user.errors.empty? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <p class="error"><%= message %></p>
+  <% end %>
+<% end %>
 <form method="POST" action="/users">
   <label>Name:
     <input id="user_name" name="user[name]">

@@ -5,6 +5,8 @@ ENV['RACK_ENV'] ||= 'test'
 
 require './thunder_app'
 
+require 'shoulda-matchers'
+
 require 'capybara/rspec'
 # Capybara allows us to test web applications easily. Let's load the library!
 
@@ -28,3 +30,9 @@ Capybara.app = Sinatra::Application
 # For comparison of classic vs modular sinatra styles
 
 ActiveRecord::Base.logger = Logger.new('/dev/null')
+
+RSpec.configure do |config|
+  config.before do
+    User.destroy_all
+  end
+end

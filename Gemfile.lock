@@ -52,6 +52,8 @@ GEM
     rspec-mocks (2.14.3)
     shotgun (0.9)
       rack (>= 1.0)
+    shoulda-matchers (2.4.0)
+      activesupport (>= 3.0.0)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -76,5 +78,6 @@ DEPENDENCIES
   rack-flash3
   rspec
   shotgun
+  shoulda-matchers
   sinatra
   sinatra-activerecord

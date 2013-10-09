@@ -44,6 +44,7 @@ end
 
 
 get '/users/new' do
+  @user = User.new
   erb "users/new".to_sym
 end
 

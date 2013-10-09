@@ -67,5 +67,6 @@ group :development, :test do
   # for documentation
 
   gem 'dotenv'
+  gem 'shoulda-matchers'
 
 end

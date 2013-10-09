@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 feature "Guest may register as Norse Deity" do
-  let(:users_attributes) do
-    {
-      name: "Zee",
-      email: "zee@example.com",
-      password: "password"
-    }
-  end
 
   def register_as(user)
     visit "/"
@@ -19,23 +12,47 @@ feature "Guest may register as Norse Deity" do
 
     click_on "Finish Registering"
   end
-  scenario "Guest is thanked after registering" do
-    register_as(users_attributes)
-    expect(page).to have_content("Thanks for registering, #{users_attributes[:name]}!")
+
+  context "When valid credentials are provided" do
+    let(:users_attributes) do
+      {
+        name: "Zee",
+        email: "zee@example.com",
+        password: "password"
+      }
+    end
+    scenario "Guest is thanked" do
+      register_as(users_attributes)
+      expect(page).to have_content("Thanks for registering, #{users_attributes[:name]}!")
+    end
+
+    scenario "Guest is logged in immediately" do
+      register_as(users_attributes)
+
+      visit "/"
+
+      expect(page).to have_content("Logged in as: #{users_attributes[:name]}")
+      expect(page).to have_content("Log out")
+
+      expect(page).not_to have_content("Log in")
+      expect(page).not_to have_content("Register")
+    end
   end
 
-  scenario "Guest is logged in immediately after registering" do
-    register_as(users_attributes)
+  context "when valid credentials are not provided" do
+    let(:users_attributes) do
+      {
+        name: "",
+        email: "",
+        password: ""
+      }
+    end
+    scenario "Guest is asked to fix their errors" do
+      register_as(users_attributes)
 
-    visit "/"
-
-    expect(page).to have_content("Logged in as: #{users_attributes[:name]}")
-    expect(page).to have_content("Log out")
-
-    expect(page).not_to have_content("Log in")
-    expect(page).not_to have_content("Register")
+      expect(page).to have_content("Email can't be blank")
+      expect(page).to have_content("Name can't be blank")
+      expect(page).to have_content("Password can't be blank")
+    end
   end
-
-  scenario "Guest must provide an email address"
-  scenario "Guest must provide a password"
 end
