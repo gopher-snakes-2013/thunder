@@ -1,0 +1,20 @@
+<% unless @user.errors.empty? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <p class="error"><%= message %></p>
+  <% end %>
+<% end %>
+<form method="POST" action="/users">
+  <label>Name:
+    <input id="user_name" name="user[name]">
+  </label>
+
+  <label>Email:
+    <input id="user_email" name="user[email]">
+  </label>
+
+  <label>Password:
+    <input id="user_password" name="user[password]" type="password">
+  </label>
+
+  <button>Finish Registering</button>
+</form>
