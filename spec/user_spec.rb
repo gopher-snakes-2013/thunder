@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe User do
   describe "#password" do
+    # relating to the password method of user
     it { should validate_presence_of(:password) }
+    # shoulda matchers from thottbot, they are pretty cool
+    # https://github.com/thoughtbot/shoulda-matchers
   end
 
   describe "#name" do
@@ -19,10 +22,15 @@ describe User do
 
   describe ".authenticate" do
     let(:user_attributes) { random_user_attributes }
+    # check the spec helper to see the method
+    # random_user_attributes
     context "when the user exists" do
       let!(:user) { User.create(user_attributes) }
+      # the variable user in this context will be User.create
+      # user_attributes (a method from spec helper)
       it "returns the user" do
         expect(User.authenticate(user_attributes)).to eql(user)
+        # if autheticate passes it returns the users, otherwise false
       end
 
       context "and the password is wrong" do
