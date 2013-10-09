@@ -75,6 +75,8 @@ post "/sessions" do
     login(@user)
     redirect '/'
   else
+    @email = params[:user][:email]
+    flash[:error] = "No user is registered with that email and password combination"
     erb "sessions/new".to_sym
   end
 end
