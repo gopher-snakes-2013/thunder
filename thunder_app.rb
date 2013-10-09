@@ -63,6 +63,12 @@ get "/sessions/new" do
   erb "sessions/new".to_sym
 end
 
+get "/sessions/delete" do
+  log_out
+  flash[:notice] = "You have successfully logged out"
+  redirect "/"
+end
+
 post "/sessions" do
   @user = User.authenticate(params[:user])
   if @user
