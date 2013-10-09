@@ -6,7 +6,13 @@
 <% end %>
 
 <nav>
-  <h3>
-    <a href="/users/new">Register as a Norse Deity</a>
-  </h3>
+  <ul>
+    <% if logged_in? %>
+      <li>Logged in as: <%= current_user.name %></li>
+      <li><a href="/sessions/delete">Log out</a></li>
+    <% else %>
+      <li><a href="/sessions/new">Log in</a></li>
+      <li><a href="/users/new">Register as a Norse Deity</a></li>
+    <% end %>
+  </ul>
 </nav>

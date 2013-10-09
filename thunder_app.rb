@@ -5,8 +5,6 @@ enable :sessions
 use Rack::Flash
 
 
-
-
 $LOAD_PATH.unshift(File.expand_path('.'))
 # The $LOAD_PATH array includes all the places ruby will look when
 # you call require.
@@ -17,6 +15,16 @@ $LOAD_PATH.unshift(File.expand_path('.'))
 
 # See http://selfless-singleton.rickwinfrey.com/2012/12/20/-rubys-load-path/
 # For more details
+
+require 'initializers/dotenv'
+require 'initializers/activerecord'
+
+require 'models/user'
+require 'helpers/session_helper'
+
+helpers do
+  include SessionHelper
+end
 
 get '/' do
 # This tells sinatra to define a get route at the '/' path.
@@ -40,6 +48,12 @@ get '/users/new' do
 end
 
 post '/users' do
-  flash[:notice] = "Thanks for registering, #{params[:user][:name]}!"
-  redirect '/'
+  @user = User.create(params[:user])
+  if @user.valid?
+    login(@user)
+    flash[:notice] = "Thanks for registering, #{params[:user][:name]}!"
+    redirect '/'
+  else
+    erb "users/new".to_sym
+  end
 end

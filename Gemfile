@@ -31,6 +31,9 @@ gem 'sinatra'
 
 gem 'rack-flash3'
 
+gem 'sinatra-activerecord'
+gem 'pg'
+
 
 group :development, :test do
 # Groups allow us to keep gems that we only use for test
@@ -62,5 +65,7 @@ group :development, :test do
 
   # See https://github.com/rtomayko/shotgun
   # for documentation
+
+  gem 'dotenv'
 
 end

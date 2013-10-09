@@ -26,3 +26,5 @@ Capybara.app = Sinatra::Application
 
 # See http://www.sinatrarb.com/intro.html#Modular%20vs.%20Classic%20Style
 # For comparison of classic vs modular sinatra styles
+
+ActiveRecord::Base.logger = Logger.new('/dev/null')
