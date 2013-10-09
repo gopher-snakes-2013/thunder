@@ -33,6 +33,7 @@ gem 'rack-flash3'
 
 gem 'sinatra-activerecord'
 gem 'pg'
+gem 'bcrypt-ruby'
 
 
 group :development, :test do

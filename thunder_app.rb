@@ -1,6 +1,8 @@
 require 'sinatra'
 
 require 'rack-flash'
+require 'bcrypt'
+
 enable :sessions
 use Rack::Flash
 
