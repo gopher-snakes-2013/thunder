@@ -1,8 +1,8 @@
 module SessionHelper
-  # We tell sinatra this module is a helper in thunder_app.rb
-  # Views automatically have access to all helper methods.
-  # Routes, views, and helpers all have access to the same methods
-  # and instance variables.
+# We tell sinatra this module is a helper in thunder_app.rb
+# Views automatically have access to all helper methods.
+# Routes, views, and helpers all have access to the same methods
+# and instance variables.
 
   def logged_in?
     !current_user.nil?

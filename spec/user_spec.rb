@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   describe "#password" do
-    # relating to the password method of user
+  # relating to the password method of user
 
     it { should validate_presence_of(:password) }
     # shoulda matchers from thottbot, they are pretty cool

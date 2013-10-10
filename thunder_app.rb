@@ -59,7 +59,7 @@ end
 
 
 get '/users/new' do
-  # for the route root_path/users/new do
+# for the route root_path/users/new do
 
   @user = User.new
   # set the instance variable (which can be seen from the view)
@@ -109,7 +109,7 @@ post "/sessions" do
   # check the user model to see the authenticate method
 
   if @user
-    #if a user exists it will be truthy and pass
+  #if a user exists it will be truthy and pass
 
     login(@user)
     redirect '/'
