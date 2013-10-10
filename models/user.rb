@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :name, :presence => true
-  validate :password_is_set
-  validate :email_matches_proper_format
+  validate  :password_is_set
+  validate  :email_matches_proper_format
 
   include BCrypt
 
