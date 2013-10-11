@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validate :password_is_set
   validate :email_matches_proper_format
 
+  has_many :suggested_talks, class_name: "Talk", foreign_key: "suggester_id"
+
   include BCrypt
 
   def password
@@ -28,9 +30,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def suggest_talk(attributes)
+    self.suggested_talks.create(attributes)
+  end
+
   def self.authenticate(user_hash)
     user = User.find_by_email(user_hash[:email])
     return false unless user && user.password == user_hash[:password]
     user
   end
+
+
 end

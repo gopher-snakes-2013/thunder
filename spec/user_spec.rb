@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_many :suggested_talks }
+
   describe "#password" do
     it { should validate_presence_of(:password) }
   end
@@ -15,6 +17,14 @@ describe User do
     it { should allow_value("hello@example.com").for(:email) }
     it { should_not allow_value("helloexample.com").for(:email) }
     it { should_not allow_value("hello@examplecom").for(:email) }
+  end
+
+  describe "#suggest_talk" do
+    it "Adds the passed in talk to the users talks" do
+      user = User.create(random_user_attributes)
+      talk = user.suggest_talk(random_talk_attributes)
+      expect(user.suggested_talks).to include talk
+    end
   end
 
   describe ".authenticate" do

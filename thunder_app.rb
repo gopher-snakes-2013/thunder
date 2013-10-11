@@ -21,17 +21,24 @@ $LOAD_PATH.unshift(File.expand_path('.'))
 require 'initializers/dotenv'
 require 'initializers/activerecord'
 
-require 'models/user'
+Dir['models/*.rb'].each do |model_file_name|
+  require model_file_name
+end
+
 require 'helpers/session_helper'
 
 helpers do
   include SessionHelper
+
+  def navigation_partial
+    logged_in? ? :_user_navigation : :_guest_navigation
+  end
 end
 
 get '/' do
 # This tells sinatra to define a get route at the '/' path.
 # If you use shotgun to run the app
-
+  @talks = Talk.all
   erb :index
   # This tells sinatra to load the embedded ruby file in views named index.erb
   # It loads the file, interprets it, and returns the output as a string.
@@ -81,4 +88,9 @@ post "/sessions" do
     flash[:error] = "No user is registered with that email and password combination"
     erb "sessions/new".to_sym
   end
+end
+
+post "/talks" do
+  current_user.suggest_talk(params[:talk])
+  redirect "/"
 end
