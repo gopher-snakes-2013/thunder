@@ -1,11 +1,15 @@
 <div id="suggested-talks">
   <h2>Suggested Talks</h2>
-  <ul>
-    <% @talks.each do |talk| %>
-      <li><%= talk.name %></li>
-    <%end %>
-  </ul>
+  <% @talks.each do |talk| %>
+    <div id="talk-<%=talk.id%>" class="talk">
+      <h3><%= talk.name %></h3>
+      <form method="POST" action="/talks/<%=talk.id%>/claim">
+        <button>I'll do it!</button>
+      </form>
+    </div>
+  <%end %>
 
+  <h2>Suggest a Talk</h2>
   <form method="POST" action="/talks">
     <label>Talk Name: <input id="talk_name" type="text" name="talk[name]" /></label>
     <button>Suggest Talk</button>

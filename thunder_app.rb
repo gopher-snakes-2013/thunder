@@ -33,6 +33,8 @@ require 'helpers/session_helper'
 # This makes the module located at helpers/sessions_helper availiable
 # We will tell sinatra it is a helper below
 
+require 'collectors/collects_talks_for_rendering'
+
 helpers do
   # helpers is a sinatra method
   # Views automatically have access to all helper methods.
@@ -42,6 +44,8 @@ helpers do
   include SessionHelper
   # we can only include this here because it is required around line 28
   # with: require 'helpers/session_helper'
+
+  include CollectsTalksForRendering
 
   def navigation_partial
     logged_in? ? :_user_navigation : :_guest_navigation
@@ -132,5 +136,10 @@ end
 
 post "/talks" do
   current_user.suggest_talk(params[:talk])
+  redirect "/"
+end
+
+post "/talks/:id/claim" do
+  current_user.claim_talk(Talk.find(params[:id]))
   redirect "/"
 end
