@@ -23,8 +23,12 @@ require 'initializers/activerecord'
 # We have required these initializers to seperate concerns
 # The actual require sintra/activerecord statement have moved this folder
 
-require 'models/user'
-# We would like some models, specificly user models to be seen by our app
+Dir['models/*.rb'].each do |model_file_name|
+# In the director model for each .rb file do
+# Assumes we start at APP_ROOT
+  require model_file_name
+end
+
 require 'helpers/session_helper'
 # This makes the module located at helpers/sessions_helper availiable
 # We will tell sinatra it is a helper below
@@ -39,12 +43,18 @@ helpers do
   # we can only include this here because it is required around line 28
   # with: require 'helpers/session_helper'
 
+  def navigation_partial
+    logged_in? ? :_user_navigation : :_guest_navigation
+    # this operation uses a ternary operator which acts like:
+    # puts condition ? value_if_true : value_else
+  end
+
 end
 
 get '/' do
 # This tells sinatra to define a get route at the '/' path.
 # If you use shotgun to run the app
-
+  @talks = Talk.all
   erb :index
   # This tells sinatra to load the embedded ruby file in views named index.erb
   # It loads the file, interprets it, and returns the output as a string.
@@ -118,4 +128,9 @@ post "/sessions" do
     flash[:error] = "No user is registered with that email and password combination"
     erb "sessions/new".to_sym
   end
+end
+
+post "/talks" do
+  current_user.suggest_talk(params[:talk])
+  redirect "/"
 end

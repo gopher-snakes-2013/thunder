@@ -1,3 +1,4 @@
+<header>
 <h1>Thunder!</h1>
 <p>All the Awesome Lightning Talks!</p>
 
@@ -7,12 +8,11 @@
 
 <nav>
   <ul>
-    <% if logged_in? %>
-      <li>Logged in as: <%= current_user.name %></li>
-      <li><a href="/sessions/delete">Log out</a></li>
-    <% else %>
-      <li><a href="/sessions/new">Log in</a></li>
-      <li><a href="/users/new">Register as a Norse Deity</a></li>
-    <% end %>
+    <%= erb navigation_partial  %>
   </ul>
 </nav>
+
+</header>
+
+
+ <%= erb :_suggested_talks if logged_in? %>

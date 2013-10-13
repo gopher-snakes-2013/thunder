@@ -35,6 +35,7 @@ ActiveRecord::Base.logger = Logger.new('/dev/null')
 RSpec.configure do |config|
   config.before do
     User.destroy_all
+    Talk.destroy_all
   end
 end
 
@@ -45,4 +46,20 @@ def random_user_attributes
     email: "#{name.parameterize}@example.com",
     password: "password"
   }
+end
+
+def random_talk_attributes
+  {
+    name: Faker::Lorem.sentence
+  }
+end
+
+def login(user)
+  visit '/'
+  click_on "Log in"
+
+  fill_in :user_email, with: user[:email]
+  fill_in :user_password, with: user[:password]
+
+  click_on "Log in"
 end
