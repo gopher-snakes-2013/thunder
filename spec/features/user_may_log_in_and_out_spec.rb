@@ -3,15 +3,6 @@ require 'spec_helper'
 feature "User may log in and out" do
   let(:user_attributes) { random_user_attributes }
   let!(:user) { User.create(user_attributes) }
-  def login(user)
-    visit '/'
-    click_on "Log in"
-
-    fill_in :user_email, with: user[:email]
-    fill_in :user_password, with: user[:password]
-
-    click_on "Log in"
-  end
 
   context "with valid login credentials" do
     scenario "User may log in" do
@@ -30,6 +21,7 @@ feature "User may log in and out" do
       expect(page.find_field("user_email").value).to eql user_attributes[:email]
     end
   end
+
   scenario "User may log out" do
     login(user_attributes)
     click_on "Log out"
