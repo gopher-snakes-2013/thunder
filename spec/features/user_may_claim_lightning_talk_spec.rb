@@ -15,6 +15,4 @@ feature "Claiming a lightning talk" do
 
     expect(page).to have_content("#{talk.name} - Presented By #{user.name}")
   end
-
 end
-
