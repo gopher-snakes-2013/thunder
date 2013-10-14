@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validate  :email_matches_proper_format
 
   has_many :suggested_talks, class_name: "Talk", foreign_key: "suggester_id"
+  has_many :claimed_talks, class_name: "Talk", foreign_key: "claimant_id"
 
   include BCrypt
 
@@ -32,6 +33,10 @@ class User < ActiveRecord::Base
 
   def suggest_talk(attributes)
     self.suggested_talks.create(attributes)
+  end
+
+  def claim_talk(talk)
+    self.claimed_talks << talk
   end
 
   def self.authenticate(user_hash)

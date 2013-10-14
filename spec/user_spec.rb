@@ -32,6 +32,16 @@ describe User do
     end
   end
 
+  describe "#claim_talk!" do
+    it "Adds the passed in talk to the users claimed talks" do
+      talk = Talk.create(random_talk_attributes)
+      user = User.create(random_user_attributes)
+      user.claim_talk(talk)
+      expect(user.claimed_talks).to include talk
+    end
+
+  end
+
   describe ".authenticate" do
     let(:user_attributes) { random_user_attributes }
     # check the spec_helper to see the method

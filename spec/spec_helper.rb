@@ -8,6 +8,8 @@ require './thunder_app'
 require 'shoulda-matchers'
 require 'faker'
 
+require 'spec/helpers/factory_helper'
+
 require 'capybara/rspec'
 # Capybara allows us to test web applications easily. Let's load the library!
 
@@ -37,21 +39,9 @@ RSpec.configure do |config|
     User.destroy_all
     Talk.destroy_all
   end
-end
 
-def random_user_attributes
-  name = "#{Faker::Name.name} #{SecureRandom.hex(4)}"
-  {
-    name: name,
-    email: "#{name.parameterize}@example.com",
-    password: "password"
-  }
-end
+  config.include FactoryHelper
 
-def random_talk_attributes
-  {
-    name: Faker::Lorem.sentence
-  }
 end
 
 def login(user)
