@@ -1,5 +1,5 @@
 begin
   require 'dotenv'
-  Dotenv.load
+  Dotenv.load(".env.#{ENV['RACK_ENV']}", ".env")
 rescue LoadError
 end
