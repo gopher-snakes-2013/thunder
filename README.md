@@ -5,16 +5,17 @@ recommend and volunteer for talks
 
 ## Running the App
 
-We recommend you use `shotgun` to run the app locally
-```
-  shotgun
-```
+1. Clone it/Update it
+1. `bundle`
+1. `createdb thunder_dev` # Create the postgres database
+1. `rake db:migrate`      # Ensure the database is up to date
+1. `rackup`               # Or your rack-compliant server of choice
 
-This serves the application on localhost at port 9393. You can visit it at
-http://localhost:9393/
+## Running the tests
 
-Shotgun also re-loads the application every time we change a file, so it is
-always up to date.
+1. `createdb thunder_test`
+1. `RACK_ENV=test rake db:migrate`
+1. `rake`
 
 ## Contributing
 
