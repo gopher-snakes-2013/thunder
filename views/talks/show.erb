@@ -7,5 +7,6 @@
       <p class="author">&mdash; <%= note.author_name %></p>
     </div>
   <% end %>
+  <p><a class="add-note-link" href="/talks/<%=@talk.id%>/notes/new">Add Notes</a></p>
   <%= erb :_note_form, locals: { note: @talk.notes.new } %>
 </div>

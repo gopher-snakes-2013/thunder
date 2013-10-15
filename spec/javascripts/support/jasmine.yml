@@ -6,6 +6,7 @@
 
 src_files:
     - javascripts/vendor/**/*.js # Make sure to load all vendor files before my files
+    - javascripts/lib/thunder.js
     - javascripts/lib/**/*.js    # Only load the stuff in lib, since application.js runs on document load
 
 # stylesheets
