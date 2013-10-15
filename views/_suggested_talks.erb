@@ -1,6 +1,6 @@
 <div id="suggested-talks">
   <h2>Suggested Talks</h2>
-  <% @talks.each do |talk| %>
+  <% suggested_talks.each do |talk| %>
     <div id="talk-<%=talk.id%>" class="talk">
       <h3><%= talk.name %></h3>
       <form method="POST" action="/talks/<%=talk.id%>/claim">
