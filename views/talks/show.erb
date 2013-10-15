@@ -7,4 +7,5 @@
       <p class="author">&mdash; <%= note.author_name %></p>
     </div>
   <% end %>
+  <%= erb :_note_form, locals: { note: @talk.notes.new } %>
 </div>
