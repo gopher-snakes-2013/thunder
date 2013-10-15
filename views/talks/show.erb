@@ -1,0 +1,10 @@
+<h2><%= @talk.name %></h2>
+<div class="notes">
+  <h3>Notes</h3>
+  <% @talk.notes.each do |note| %>
+    <div id="note-<%=note.id%>" class="note">
+      <p class="body"><%= note.body %></p>
+      <p class="author">&mdash; <%= note.author_name %></p>
+    </div>
+  <% end %>
+</div>

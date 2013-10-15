@@ -13,12 +13,32 @@ get '/' do
   # For how Sinatra works with templates and views
 
 end
+
 post "/talks" do
   current_user.suggest_talk(params[:talk])
   redirect "/"
 end
 
+before %r{\/talks\/(\d+)} do
+  @talk = Talk.find(params[:captures].first)
+end
 post "/talks/:id/claim" do
-  current_user.claim_talk(Talk.find(params[:id]))
+  current_user.claim_talk(@talk)
   redirect "/"
+end
+
+get "/talks/:id/notes/new" do
+  @note = @talk.notes.new
+  erb "talks/new_note".to_sym
+end
+
+post "/talks/:id/notes" do
+  note = @talk.notes.new(params[:note])
+  note.author = current_user
+  note.save
+  redirect "/talks/#{params[:id]}"
+end
+
+get "/talks/:id" do
+  erb "talks/show".to_sym
 end

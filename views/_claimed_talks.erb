@@ -2,7 +2,8 @@
   <h2>Upcoming Talks</h2>
   <% upcoming_talks.each do |talk| %>
     <div id="talk-<%=talk.id%>" class="talk">
-      <h3><%= talk.name %> - Presented By <%=talk.claimant_name%></h3>
+      <h3><a href="/talks/<%=talk.id%>"><%= talk.name %></a> - Presented By <%=talk.claimant_name%></h3>
+      <p><a href="/talks/<%=talk.id%>/notes/new">Add Notes</a></p>
     </div>
   <%end %>
 </div>
