@@ -45,6 +45,10 @@ RSpec.configure do |config|
 end
 
 def login(user)
+  if user.respond_to? :email
+    attributes = { email: user[:email], password: 'password' }
+    user = attributes
+  end
   visit '/'
   click_on "Log in"
 

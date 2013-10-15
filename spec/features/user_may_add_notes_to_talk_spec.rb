@@ -5,7 +5,9 @@ feature "Adding Notes" do
     user = create_random_user
     talk = create_random_claimed_talk
     login(user)
+
     visit '/'
+
     within "#talk-#{talk.id}" do
       click_on "Add Notes"
       fill_in "Notes", with: "This was pretty amazing"
