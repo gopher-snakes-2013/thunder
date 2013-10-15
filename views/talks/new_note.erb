@@ -1,8 +1,1 @@
-<div class="talk" id="talk-<%=@note.talk.id%>">
-  <form method="POST" action="/talks/<%=@note.talk.id%>/notes">
-    <label>Note body
-      <textarea id="note_body" name="note[body]"><%=@note.body%></textarea>
-    </label>
-    <button>Add Note</button>
-  </form>
-</div>
+<%= erb :_note_form, locals: { note: @note } %>

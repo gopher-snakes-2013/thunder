@@ -1,0 +1,54 @@
+# src_files
+#
+# Return an array of filepaths relative to src_dir to include before jasmine specs.
+# Default: []
+#
+
+src_files:
+    - javascripts/vendor/**/*.js # Make sure to load all vendor files before my files
+    - javascripts/lib/thunder.js
+    - javascripts/lib/**/*.js    # Only load the stuff in lib, since application.js runs on document load
+
+# stylesheets
+#
+# Return an array of stylesheet filepaths relative to src_dir to include before jasmine specs.
+# Default: []
+#
+
+stylesheets:
+  - css/**/*.css
+
+# helpers
+#
+# Return an array of filepaths relative to spec_dir to include before jasmine specs.
+# Default: ["helpers/**/*.js"]
+#
+
+helpers:
+  - 'helpers/**/*.js'
+
+# spec_files
+#
+#  Return an array of filepaths relative to spec_dir to include.
+# Default: ["**/*[sS]pec.js"]
+#
+
+spec_files:
+  - '**/*[sS]pec.js'
+
+# src_dir
+#
+# Source directory path. Your src_files must be returned relative to this path. Will use root if left blank.
+# Default: project root
+#
+
+src_dir: public
+
+# spec_dir
+#
+# Spec directory path. Your spec_files must be returned relative to this path.
+# Default: spec/javascripts
+#
+
+spec_dir: spec/javascripts
+
