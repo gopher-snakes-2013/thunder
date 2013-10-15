@@ -1,9 +1,9 @@
 describe('Thunder', function () {
   describe('.run', function() {
-    it("calls Thunder.createAddNoteView", function() {
-      spyOn(Thunder, 'createAddNoteView');
+    it("calls Thunder.createTalkView", function() {
+      spyOn(Thunder, 'createTalkView');
       Thunder.run();
-      expect(Thunder.createAddNoteView).toHaveBeenCalled();
+      expect(Thunder.createTalkView).toHaveBeenCalled();
     });
   });
 });
