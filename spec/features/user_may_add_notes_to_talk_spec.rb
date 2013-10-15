@@ -21,7 +21,7 @@ feature "Adding Notes" do
       end
     end
   end
-  scenario "Registered user may add notes to talk" do
+  scenario "Registered user may add notes to talk", js: true do
     visit '/'
 
     within "#talk-#{talk.id}" do

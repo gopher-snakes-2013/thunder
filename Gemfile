@@ -70,5 +70,6 @@ group :development, :test do
   gem 'dotenv'
   gem 'shoulda-matchers'
   gem 'faker'
+  gem 'selenium-webdriver'
 
 end
