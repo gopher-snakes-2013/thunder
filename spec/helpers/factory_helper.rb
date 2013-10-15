@@ -14,6 +14,12 @@ module FactoryHelper
     }
   end
 
+  def random_note_attributes
+    {
+      body: Faker::Lorem.paragraph
+    }
+  end
+
   def create_random_unclaimed_talk
     Talk.create(random_talk_attributes)
   end
@@ -25,6 +31,17 @@ module FactoryHelper
 
   def create_random_user
     User.create(random_user_attributes)
+  end
+
+  def create_talk_with_notes
+    talk = create_random_claimed_talk
+
+    5.times do
+      user = create_random_user
+      talk.notes.create(random_note_attributes.merge(author_id: user.id))
+    end
+
+    talk
   end
 
 end
