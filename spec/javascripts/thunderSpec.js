@@ -3,7 +3,8 @@ describe('Thunder', function () {
     beforeEach(function() {
       var talkDOM = affix('.talk');
       talkDOM.affix('.add-note-link');
-      talkDOM.affix('.add-note-form')
+      var addNoteFormDOM = talkDOM.affix('.add-note-form')
+      addNoteFormDOM.affix('.cancel');
 
       // Think of the DOM like a database. We're inserting HTML into it so we
       // can actually test that it behaves properly given the  structure of the
@@ -20,15 +21,32 @@ describe('Thunder', function () {
       expect($('.add-note-form')).toHaveClass('hidden');
     })
 
-    it("shows the add-note-form when the add-note-link is clicked", function() {
-      $('.add-note-link').click();
+    context("After clicking the add-note-link", function() {
+      beforeEach(function() {
+        $('.add-note-link').click();
+      });
 
-      expect($('.add-note-form')).not.toHaveClass('hidden');
-    });
-    it("hides the add-note-link when it is clicked", function() {
-      $('.add-note-link').click();
+      it("shows the add-note-form", function() {
+        expect($('.add-note-form')).not.toHaveClass('hidden');
+      });
 
-      expect($('.add-note-link')).toHaveClass('hidden');
+      it("hides the add-note-link", function() {
+        expect($('.add-note-link')).toHaveClass('hidden');
+      });
+
+      context("and canceling the note adding", function() {
+        beforeEach(function() {
+          $('.add-note-form .cancel').click();
+        });
+
+        it("hides the add-note-form", function() {
+          expect($('.add-note-form')).toHaveClass('hidden');
+        });
+
+        it("shows the add-note-link", function() {
+          expect($('.add-note-link')).not.toHaveClass('hidden');
+        });
+      });
     });
   });
 });
