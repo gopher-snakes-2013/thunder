@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.expand_path('.'))
 require 'tasks/rspec'
 require 'tasks/environment'
+require 'tasks/jasmine'
 
 require 'sinatra/activerecord/rake'
 

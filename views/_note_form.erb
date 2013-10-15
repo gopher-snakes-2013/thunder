@@ -1,0 +1,9 @@
+<div class="add-note-form">
+  <form method="POST" action="/talks/<%=note.talk.id%>/notes">
+    <label>Note body
+      <textarea id="note_body" name="note[body]"><%=note.body%></textarea>
+    </label>
+    <button>Add Note</button>
+    <button class="cancel">Cancel</button>
+  </form>
+</div>
