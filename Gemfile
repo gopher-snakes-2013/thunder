@@ -72,4 +72,5 @@ group :development, :test do
   gem 'faker'
   gem 'selenium-webdriver'
 
+  gem 'jasmine'
 end
