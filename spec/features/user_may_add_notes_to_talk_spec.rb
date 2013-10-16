@@ -32,6 +32,7 @@ feature "Adding Notes" do
 
     click_on "Add Note"
 
+    expect(page).to have_content("Your note has been added to #{talk.name}")
     expect(talk.notes.first.body).to eql("This was pretty amazing")
   end
 end
