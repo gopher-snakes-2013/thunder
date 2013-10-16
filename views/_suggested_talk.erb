@@ -1,0 +1,6 @@
+<div id="talk-<%=talk.id%>" class="talk">
+  <h3><%= talk.name %></h3>
+  <form method="POST" action="/talks/<%=talk.id%>/claim">
+    <button>I'll do it!</button>
+  </form>
+</div>
