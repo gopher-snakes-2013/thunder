@@ -3,7 +3,9 @@ function AddTalkFormView() {
   this.$form.on('submit', function(e) {
     e.preventDefault();
     talk = new Talk({ name: $('#talk-name').val() });
-    talk.save();
+    talk.save().done(function(response) {
+      $('#suggested-talks .talks').prepend(response);
+    });
   });
 
 }

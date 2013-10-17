@@ -1,6 +1,6 @@
 describe('AddTalkFormView', function () {
   describe('When the #suggest-talk-form is submitted', function() {
-    var fakeTalk;
+    var fakeTalk, saveTalkRequest;
 
     beforeEach(function() {
       affix('form#suggest-talk-form input#talk-name');
@@ -18,8 +18,13 @@ describe('AddTalkFormView', function () {
       new AddTalkFormView();
       // Now we're actually creating a new AddTalkFormView!
 
+
+      saveTalkRequest = $.Deferred()
+      // We know save returns a deferred object, so let's give it one we
+      // control. This let's us say whether or not the save worked or not.
+
       fakeTalk = {
-        save: sinon.spy()
+        save: sinon.stub().returns(saveTalkRequest)
       };
       // We're creating a fake Talk so we can intercept interactions to save
       // and prevent it from actually trying to send the data to the server.
@@ -29,28 +34,35 @@ describe('AddTalkFormView', function () {
       // called with, as well as make sure it returns a fake talk that doesn't
       // actually hit the server.
 
+        $('#talk-name').val('The secret world of object espionage');
+
+        $('#suggest-talk-form').submit();
     });
 
     it("preventsDefault", function() {
-
-      $('#suggest-talk-form').submit();
       expect('submit').toHaveBeenPreventedOn('#suggest-talk-form');
     });
 
     it("creates a new talk with the data in the form", function() {
-      $('#talk-name').val('The secret world of object espionage');
-
-      $('#suggest-talk-form').submit();
-
       expect(Talk).toHaveBeenCalledWith({ name: "The secret world of object espionage" });
     });
 
     it("saves the new talk object", function() {
-      $('#talk-name').val('The secret world of object espionage');
-
-      $('#suggest-talk-form').submit();
-
       expect(fakeTalk.save).toHaveBeenCalled();
+    });
+
+    describe("when the save completes successfuly", function() {
+      it("prepends the servers response to the suggested talks list.", function() {
+
+        affix('#suggested-talks .talks');
+        var serverResponse = "<h1>The secret world of object espionage</h1>"
+        saveTalkRequest.resolve(serverResponse);
+        // The `deferred.resolve` method says that the save completed
+        // successfuly.
+
+        expect($('#suggested-talks .talks:eq(0)')).toHaveHtml(serverResponse)
+      });
+
     });
   });
 });
