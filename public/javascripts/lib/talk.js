@@ -3,7 +3,7 @@ function Talk(attributes) {
 }
 
 Talk.prototype.save = function() {
-  $.ajax({
+  return $.ajax({
     url: this.__url(),
     method: this.__method(),
     contentType: "json",
@@ -21,7 +21,6 @@ Talk.prototype.__url = function() {
 }
 
 Talk.prototype.__method = function() {
-
   if (this.isPersisted()) {
     return "PUT"
   } else {

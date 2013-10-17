@@ -67,16 +67,20 @@ describe('Talk', function () {
   });
 
   describe('#save', function() {
+    var talk, returnValue;
+    beforeEach(function() {
+      talk = new Talk({id: 5, name: "Do the dance" });
+      returnValue = talk.save();
+    });
     it("sends the talks data in the request body", function() {
-      var talk = new Talk({id: 5, name: "Do the dance" });
-
-      talk.save();
-
       expect(lastRequest.requestBody).toEqual(JSON.stringify(talk.attributes));
     });
 
-    it("returns a deferred object");
-
+    it("returns a deferred object", function() {
+      expect(returnValue.done).toBeDefined();
+      expect(returnValue.fail).toBeDefined();
+      expect(returnValue.always).toBeDefined();
+      expect(returnValue.then).toBeDefined();
+    });
   });
 });
-
