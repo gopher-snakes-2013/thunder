@@ -19,6 +19,13 @@ describe('Talk', function () {
       // We want to turn AJAX back on. Just in case.
     });
 
+    it("sends the talks data in the request body", function() {
+        var talk = new Talk({id: 5, name: "Do the dance" });
+
+        talk.save();
+
+        expect(lastRequest.requestBody).toEqual(JSON.stringify(talk.attributes));
+    });
     it("returns a deferred object");
     context("When the talk is new", function() {
       it("POSTs a request to /talks", function() {
