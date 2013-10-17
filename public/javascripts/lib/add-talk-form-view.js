@@ -1,8 +1,10 @@
 function AddTalkFormView() {
   this.$form = $('#suggest-talk-form');
+  this.$suggestedTalks = $('#suggested-talks .talks');
+
+
   var self = this;
-  // We're caching access to `this` because the fail callback changes what
-  // `this` is.
+  // We're caching access to `this` because callbacks change functions context.
 
   this.$form.on('submit', function(e) {
     e.preventDefault();
@@ -22,7 +24,7 @@ AddTalkFormView.prototype.saveTalk = function() {
 }
 
 AddTalkFormView.prototype.appendTalk = function(talkHtml) {
-  $('#suggested-talks .talks').prepend(talkHtml);
+  this.$suggestedTalks.prepend(talkHtml);
 }
 
 AddTalkFormView.prototype.appendError = function(errorHtml) {
