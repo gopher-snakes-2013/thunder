@@ -1,9 +1,11 @@
 describe('AddTalkFormView', function () {
   describe('When the #suggest-talk-form is submitted', function() {
-    var fakeTalk, saveTalkRequest;
+    var fakeTalk, saveTalkRequest, $suggestedTalkForm;
 
     beforeEach(function() {
-      affix('form#suggest-talk-form input#talk-name');
+      $suggestedTalkForm = affix('form#suggest-talk-form input#talk-name');
+      $suggestedTalkForm.affix('.errors')
+
       // Here we're injecting a form into the DOM to test against.
  
       // Test code does not have access to the HTML  our sinatra application
@@ -62,7 +64,15 @@ describe('AddTalkFormView', function () {
 
         expect($('#suggested-talks .talks:eq(0)')).toHaveHtml(serverResponse)
       });
+    });
+    describe("when the save fails", function() {
+      it("adds an error to the #suggested-talk-form .errors", function() {
+        var serverResponse = "Nope, chuck testa"
+        saveTalkRequest.reject(serverResponse);
+        // The `deferred.reject` method says that the save failed
 
+        expect($('#suggest-talk-form .errors')).toHaveText(serverResponse)
+      });
     });
   });
 });
