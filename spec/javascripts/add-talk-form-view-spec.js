@@ -1,5 +1,7 @@
 describe('AddTalkFormView', function () {
   describe('When the #suggest-talk-form is submitted', function() {
+    var fakeTalk;
+
     beforeEach(function() {
       affix('form#suggest-talk-form input#talk-name');
       // Here we're injecting a form into the DOM to test against.
@@ -15,6 +17,18 @@ describe('AddTalkFormView', function () {
 
       new AddTalkFormView();
       // Now we're actually creating a new AddTalkFormView!
+
+      fakeTalk = {
+        save: sinon.spy()
+      };
+      // We're creating a fake Talk so we can intercept interactions to save
+      // and prevent it from actually trying to send the data to the server.
+
+      spyOn(window, 'Talk').andReturn(fakeTalk);
+      // We're spying on the global Talk object so we can tell what it was
+      // called with, as well as make sure it returns a fake talk that doesn't
+      // actually hit the server.
+
     });
 
     it("preventsDefault", function() {
@@ -24,30 +38,19 @@ describe('AddTalkFormView', function () {
     });
 
     it("creates a new talk with the data in the form", function() {
-      spyOn(window, 'Talk')
-      // Here we're saying let's spy on the global Talk object so we can tell
-      // what it was called with.
-
-      // This allows us to make assertions that we're interacting with the Talk
-      // object appropriately.
-
-      // This is a form of coupling, but it allows us to test the TalkFormView
-      // without testing the behavior of the Talk object.
-
-      // This makes our life much easier, as we no longer have to worry about
-      // AJAX in our views.
-
       $('#talk-name').val('The secret world of object espionage');
-      // Update the form in the DOM to have a known value we can assert against.
 
       $('#suggest-talk-form').submit();
-      // Here's our "act" in the arrange/act/assert cycle.
 
       expect(Talk).toHaveBeenCalledWith({ name: "The secret world of object espionage" });
-      // And finally, our assert. Here we're ensuring submitting the form creates
-      // a new Talk with the attributes it pulled from the DOM.
+    });
 
-      // A lot of work, huh?
+    it("saves the new talk object", function() {
+      $('#talk-name').val('The secret world of object espionage');
+
+      $('#suggest-talk-form').submit();
+
+      expect(fakeTalk.save).toHaveBeenCalled();
     });
   });
 });
