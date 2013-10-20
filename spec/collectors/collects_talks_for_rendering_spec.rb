@@ -8,12 +8,17 @@ describe CollectsTalksForRendering do
   subject(:collector) { FakeCollector.new }
   let!(:claimed_talk) { create_random_claimed_talk }
   let!(:unclaimed_talk) { create_random_unclaimed_talk }
+  let!(:completed_talk) { create_random_completed_talk }
   let(:talks) { collector.send(method_under_test) }
 
   describe "#upcoming_talks" do
     let(:method_under_test) { :upcoming_talks }
     it "does not include the unclaimed talks" do
       expect(talks).not_to include unclaimed_talk
+    end
+
+    it "does not include the completed talks" do
+      expect(talks).not_to include completed_talk
     end
 
     it "includes the claimed talks" do
@@ -40,5 +45,26 @@ describe CollectsTalksForRendering do
       talks
       expect(collector.instance_variable_get("@suggested_talks")).to eql talks
     end
+  end
+
+  describe "completed_talks" do
+    let(:method_under_test) { :completed_talks }
+    it "does include completed talks" do
+      expect(talks).not_to include claimed_talk
+    end
+
+    it "does not include claimed talks" do
+      expect(talks).not_to include claimed_talk
+    end
+
+    it "does not include unclaimed talks" do
+      expect(talks).not_to include unclaimed_talk
+    end
+
+    it "caches the suggested_talks in an instance variable" do
+      talks
+      expect(collector.instance_variable_get("@completed_talks")).to eql talks
+    end
+
   end
 end
