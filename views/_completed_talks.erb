@@ -1,0 +1,6 @@
+<div id="completed-talks">
+  <h2>Completed Talks</h2>
+  <% completed_talks.each do |talk| %>
+    <%= erb :_claimed_talk, locals: { talk: talk } %>
+  <% end %>
+</div>

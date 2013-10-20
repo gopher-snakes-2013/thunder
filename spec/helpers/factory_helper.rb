@@ -29,6 +29,13 @@ module FactoryHelper
     Talk.create(random_talk_attributes.merge(claimant_id: user.id))
   end
 
+  def create_random_completed_talk
+    talk = create_random_claimed_talk
+    talk.notes << create_random_note
+    talk
+  end
+
+
   def create_random_user
     User.create(random_user_attributes)
   end
@@ -37,11 +44,15 @@ module FactoryHelper
     talk = create_random_claimed_talk
 
     5.times do
-      user = create_random_user
-      talk.notes.create(random_note_attributes.merge(author_id: user.id))
+      talk.notes << create_random_note
     end
 
     talk
   end
 
+
+  def create_random_note
+    user = create_random_user
+    Note.create(random_note_attributes.merge(author_id: user.id))
+  end
 end
