@@ -1,10 +1,6 @@
 <div id="upcoming-talks">
   <h2>Upcoming Talks</h2>
   <% upcoming_talks.each do |talk| %>
-    <div id="talk-<%=talk.id%>" class="talk">
-      <h3><a href="/talks/<%=talk.id%>"><%= talk.name %></a> - Presented By <%=talk.claimant_name%></h3>
-      <p><a class="add-note-link" href="/talks/<%=talk.id%>/notes/new">Add Notes</a></p>
-      <%= erb :_note_form, locals: { note: talk.notes.new } %>
-    </div>
+    <%= erb :_claimed_talk, locals: { talk: talk } %>
   <%end %>
 </div>
