@@ -31,6 +31,7 @@ describe('AddTalkFormView', function () {
     it("preventsDefault", function() {
       expect('submit').toHaveBeenPreventedOn('#suggest-talk-form');
     });
+
     it("saves the talk", function() {
       expect(addTalkFormView.saveTalk).toHaveBeenCalled();
     });
@@ -53,6 +54,7 @@ describe('AddTalkFormView', function () {
 
       addTalkFormView.saveTalk();
     });
+
     describe("when the save completes successfuly", function() {
       it("prepends the servers response to the suggested talks list.", function() {
         var serverResponse = "<h1>The secret world of object espionage</h1>";
@@ -62,6 +64,7 @@ describe('AddTalkFormView', function () {
         expect($('#suggested-talks .talks:eq(0)')).toHaveHtml(serverResponse)
       });
     });
+
     describe("when the save fails", function() {
       it("adds an error to the #suggested-talk-form .errors", function() {
         var serverResponse = "Nope, chuck testa";

@@ -6,8 +6,7 @@ Talk.prototype.save = function() {
   return $.ajax({
     url: this.__url(),
     method: this.__method(),
-    contentType: "json",
-    data: JSON.stringify(this.attributes)
+    data: { talk: this.attributes }
   });
 }
 

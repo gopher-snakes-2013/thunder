@@ -73,7 +73,7 @@ describe('Talk', function () {
       returnValue = talk.save();
     });
     it("sends the talks data in the request body", function() {
-      expect(lastRequest.requestBody).toEqual(JSON.stringify(talk.attributes));
+      expect(lastRequest.requestBody).toEqual(jQuery.param({ talk: talk.attributes}));
     });
 
     it("returns a deferred object", function() {

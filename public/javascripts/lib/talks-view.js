@@ -1,4 +1,5 @@
 function TalksView() {
+  this.addTalkFormView = new AddTalkFormView();
   var $talks = $('.talk');
   // Note that the $ is just a convention to indicate that this is a cached
   // reference to a jQuery Element.
