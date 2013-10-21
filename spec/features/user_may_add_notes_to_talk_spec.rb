@@ -21,7 +21,7 @@ feature "Adding Notes" do
       end
     end
   end
-  scenario "Registered user may add notes to talk", js: true do
+  scenario "Registered user may add notes to talk" do
     visit '/'
 
     within "#talk-#{talk.id}" do
@@ -32,6 +32,7 @@ feature "Adding Notes" do
 
     click_on "Add Note"
 
+    expect(page).to have_content("This was pretty amazing")
     expect(talk.notes.first.body).to eql("This was pretty amazing")
   end
 end

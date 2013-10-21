@@ -15,8 +15,12 @@ get '/' do
 end
 
 post "/talks" do
-  current_user.suggest_talk(params[:talk])
-  redirect "/"
+  talk = current_user.suggest_talk(params[:talk])
+  if request.xhr?
+    erb :_suggested_talk, locals: { talk: talk }, layout: false
+  else
+    redirect "/"
+  end
 end
 
 before %r{\/talks\/(\d+)} do
