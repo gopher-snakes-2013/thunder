@@ -1,0 +1,3 @@
+.env.development
+# We are storing our GITHUB_KEY and GITHUB_SECRET in .env.development
+# Let's not push it on to github!

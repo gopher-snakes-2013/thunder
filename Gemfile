@@ -34,6 +34,7 @@ gem 'rack-flash3'
 gem 'sinatra-activerecord'
 gem 'pg'
 gem 'bcrypt-ruby'
+gem 'omniauth-github'
 
 
 group :development, :test do

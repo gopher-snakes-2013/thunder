@@ -2,6 +2,7 @@
   <p class="error"><%= flash[:error] %>
 <% end %>
 
+<h2>Log in with your username and password</h2>
 <form method="POST" action="/sessions">
   <label>Email:
     <input id="user_email" name="user[email]" value="<%=@email%>">
@@ -13,3 +14,5 @@
 
   <button>Log in</button>
 </form
+
+<h2>Or <a href="/auth/github">login with Github!</a></h2>
