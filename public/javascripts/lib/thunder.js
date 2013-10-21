@@ -1,5 +1,5 @@
 Thunder = {
   run: function() {
-    Thunder.createTalkView();
+    this.talksView = new TalksView();
   }
 }

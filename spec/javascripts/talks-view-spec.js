@@ -1,4 +1,4 @@
-describe('Thunder.createTalkView', function () {
+describe('TalksView', function () {
   var talk1DOM, talk2DOM;
 
   function buildOutTalkDom(num) {
@@ -9,6 +9,7 @@ describe('Thunder.createTalkView', function () {
     addNoteFormDOM.affix('.cancel');
     return talkDOM;
   }
+
   beforeEach(function () {
     talk1DOM = buildOutTalkDom(1);
     talk2DOM = buildOutTalkDom(2);
@@ -19,7 +20,7 @@ describe('Thunder.createTalkView', function () {
 
     // That's what affix does for us. It inserts HTML into the DOM which it
     // reverse engineers from CSS Selectors.
-    Thunder.createTalkView();
+    new TalksView();
   });
 
   it("hides all talks add-note-form", function() {

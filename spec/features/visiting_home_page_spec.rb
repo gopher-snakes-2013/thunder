@@ -6,8 +6,6 @@ feature "Visiting home page" do
       visit "/"
 
       expect(page).to have_content "Thunder!"
-
-      expect(page).to have_content "All the Awesome Lightning Talks"
     end
   end
 

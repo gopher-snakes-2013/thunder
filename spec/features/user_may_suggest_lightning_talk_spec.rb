@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User may suggest a lightning talk"do
+feature "User may suggest a lightning talk", js: true do
   let(:user_attributes) { random_user_attributes }
   let!(:user) { User.create(user_attributes) }
 
@@ -9,7 +9,7 @@ feature "User may suggest a lightning talk"do
 
       login(user_attributes)
       visit '/'
-      fill_in "talk_name", with: "My cool talk"
+      fill_in "talk-name", with: "My cool talk"
       click_on "Suggest Talk"
       expect(page).to have_content("My cool talk")
     end
