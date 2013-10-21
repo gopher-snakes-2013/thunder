@@ -5,10 +5,29 @@
   <script src="/javascripts/application.js"></script>
   <script src="/javascripts/lib/thunder.js"></script>
   <script src="/javascripts/lib/talk-view.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Fenix|Codystar' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="/css/application.css" media="screen"/>
 </head>
 
 <body>
-  <%= yield %>
+  <header>
+    <div id="tagline">
+      <h1>Thunder!</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <%= erb navigation_partial  %>
+      </ul>
+    </nav>
+
+    <% if flash[:notice] %>
+      <p class="notice"><%=flash[:notice]%></p>
+    <% end %>
+
+  </header>
+  <div id="content">
+    <%= yield %>
+  </div>
 </body>
 </html>

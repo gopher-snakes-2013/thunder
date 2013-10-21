@@ -1,3 +1,41 @@
 .hidden {
   display: none;
 }
+
+body {
+  font-family: 'Fenix', serif;
+  font-size: 1.5em;
+  background-image: url('/images/wild_flowers.png');
+  color: #0B7F7B;
+}
+
+h1, h2, a {
+  color: #CC1CA9;
+}
+
+h3, h4, h5 {
+
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Codystar', cursive;
+}
+
+.talk h3, .talk form {
+  display: inline-block;
+}
+
+#content {
+  clear: both;
+}
+#tagline, nav, #suggested-talks, #upcoming-talks, #completed-talks {
+  float: left;
+  display: block;
+}
+
+#tagline, nav {
+  width: 50%;
+
+}
+#suggested-talks, #upcoming-talks, #completed-talks {
+  width: 33%;
+}
