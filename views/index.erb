@@ -1,18 +1,3 @@
-<header>
-<h1>Thunder!</h1>
-<p>All the Awesome Lightning Talks!</p>
-
-<% if flash[:notice] %>
-  <p class="notice"><%=flash[:notice]%></p>
-<% end %>
-
-<nav>
-  <ul>
-    <%= erb navigation_partial  %>
-  </ul>
-</nav>
-
-</header>
 
 <%= erb :_claimed_talks if logged_in? %>
 <%= erb :_suggested_talks if logged_in? %>
