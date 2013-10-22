@@ -1,7 +1,3 @@
-<% if flash[:error] %>
-  <p class="error"><%= flash[:error] %>
-<% end %>
-
 <form method="POST" action="/sessions">
   <label>Email:
     <input id="user_email" name="user[email]" value="<%=@email%>">

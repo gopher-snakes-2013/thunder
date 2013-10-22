@@ -20,6 +20,13 @@ module FactoryHelper
     }
   end
 
+  def random_unregistered_github_user_attributes
+    random_user_attributes.merge({
+      uid: 987654,
+      oauth_token: "abcdefg"
+    })
+  end
+
   def create_random_unclaimed_talk
     Talk.create(random_talk_attributes)
   end
