@@ -9,7 +9,18 @@ feature "User may log in and out" do
       login(user_attributes)
       expect(page).to have_content("Logged in as: #{user_attributes[:name]}")
     end
+
+    scenario "with github" do
+      user = stub_out_registered_github_user
+
+      visit "/"
+      click_on "log-in-link"
+      click_on "Log in with Github"
+
+      expect(page).to have_content "Logged in as: #{user.name}"
+    end
   end
+
 
   context "with invalid login credentials" do
     scenario "User is asked to log in again" do

@@ -20,3 +20,21 @@ def stub_out_unregistered_github_user
 
   user_attributes
 end
+
+def stub_out_registered_github_user
+  user = create_random_registered_github_user
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+    :provider => 'github',
+    :uid => user.oauth_uid,
+    :credentials => {
+      :token => user.oauth_token
+    },
+    :info => {
+      :name => user.name,
+      :email => user.email
+    }
+  })
+
+  user
+end

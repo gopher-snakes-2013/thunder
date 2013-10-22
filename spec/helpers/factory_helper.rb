@@ -47,6 +47,14 @@ module FactoryHelper
     User.create(random_user_attributes)
   end
 
+  def create_random_registered_github_user
+    User.create(random_user_attributes.merge({
+      oauth_token: "zyxwvu",
+      oauth_uid: 123456,
+      oauth_provider: "github"
+    }))
+  end
+
   def create_talk_with_notes
     talk = create_random_claimed_talk
 
