@@ -15,7 +15,9 @@ feature "User may log in and out" do
 
       visit "/"
       click_on "log-in-link"
-      click_on "Log in with Github"
+      expect {
+        click_on "Log in with Github"
+      }.not_to change { User.count }
 
       expect(page).to have_content "Logged in as: #{user.name}"
     end
