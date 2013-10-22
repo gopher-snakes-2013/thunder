@@ -20,6 +20,7 @@ $LOAD_PATH.unshift(File.expand_path('.'))
 
 require 'initializers/dotenv'
 require 'initializers/activerecord'
+require 'initializers/github_omniauth'
 require 'initializers/helpers'
 
 ['models', 'routes'].each do |directory_to_preload|

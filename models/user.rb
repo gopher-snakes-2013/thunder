@@ -44,6 +44,4 @@ class User < ActiveRecord::Base
     return false unless user && user.password == user_hash[:password]
     user
   end
-
-
 end

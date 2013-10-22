@@ -28,4 +28,24 @@ module SessionHelper
     @current_user = nil
     session[:user_id] = nil
   end
+
+  def login_from_omniauth(auth_hash)
+    user = User.find_or_create_by(provider: auth_hash['provider'], access_token: auth_hash['credentials']['token'])
+    if user.password.nil?
+    # Password is a required field, so let's assign a random password to a user who registers with oauth
+      user.password = SecureRandom.hex
+    end
+
+    unless user.email.present? && user.name.present?
+    # We don't want to overwrite their email or name if we've pulled a user from the database.
+      user.update_attributes(email: auth_hash['info']['email'], name: auth_hash['info']['name'])
+    end
+    user.save
+    # Let's ensure we've saved the user
+
+    login(user)
+    # And log that sucker in!
+
+    redirect '/'
+  end
 end
