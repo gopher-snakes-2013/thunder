@@ -1,4 +1,6 @@
 require 'helpers/session_helper'
+require 'helpers/omniauth_helper'
+
 require 'collectors/collects_talks_for_rendering'
 # This makes the module located at helpers/sessions_helper availiable
 # We will tell sinatra it is a helper below
@@ -12,6 +14,8 @@ helpers do
   include SessionHelper
   # we can only include this here because it is required around line 28
   # with: require 'helpers/session_helper'
+
+  include OmniauthHelper
 
   include CollectsTalksForRendering
 

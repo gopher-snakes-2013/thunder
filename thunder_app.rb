@@ -19,6 +19,7 @@ $LOAD_PATH.unshift(File.expand_path('.'))
 # For more details
 
 require 'initializers/dotenv'
+require 'initializers/omniauth'
 require 'initializers/activerecord'
 require 'initializers/helpers'
 
